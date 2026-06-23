@@ -1,6 +1,6 @@
 # Py-Shortner
 
-![demo](./demo.mp4)
+![demo](./demo.gif)
 
 A high-performance URL shortener built with Python, FastAPI, PostgreSQL, Redis, and Next.js.
 
