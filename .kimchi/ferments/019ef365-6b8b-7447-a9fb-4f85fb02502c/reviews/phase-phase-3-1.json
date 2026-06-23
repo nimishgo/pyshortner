@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "fermentId": "019ef365-6b8b-7447-a9fb-4f85fb02502c",
+  "phaseId": "phase-3",
+  "phaseName": "Integration & Docs",
+  "attempt": 1,
+  "timestamp": "2026-06-23T08:55:07.370Z",
+  "goal": "Provide Docker Compose for services, update environment config, and document the full setup.",
+  "summary": "Integration & Docs phase complete. Created docker-compose.yml with PostgreSQL and Redis services. Updated .env and .env.example for backend and frontend. Wrote comprehensive README with setup instructions, API docs, env vars, and project structure. Final backend tests pass (8/8).",
+  "stepSummaries": "  1. Create docker-compose.yml with PostgreSQL and Redis services [verified]\n  2. Update .env and create .env.example for backend and frontend [verified]\n  3. Update README with setup instructions [verified]\n  4. Run backend tests one final time [verified]",
+  "diffAvailable": true,
+  "diffFilesChanged": "README.md                  | 169 +++++++++++++++++++++++++++++++++++++++++++--\n backend/app/api/routes.py  | 104 +++++++++++++++++++++++-----\n backend/app/core/config.py |   4 ++\n backend/app/main.py        |  30 ++++----\n backend/app/models/url.py  |  19 +++--\n backend/app/schemas/url.py |  14 +++-\n pyproject.toml             |   9 +++\n uv.lock                    | 133 +++++++++++++++++++++++++++++++++++\n 8 files changed, 442 insertions(+), 40 deletions(-)",
+  "flags": [
+    {
+      "problem": "Project test command (`pytest -q`) did not validate.",
+      "evidence": "pytest not found on PATH — install before running",
+      "severity": "block",
+      "redirect": "Wire test properly before completing this phase — make `pytest -q` a real, installable command (resolve the runner, fix the script)."
+    }
+  ],
+  "derivedGrade": "F",
+  "reviewerRationale": "1 block flag(s) raised — see attached gate verdicts and project checks.",
+  "gateVerdicts": [
+    {
+      "id": "F1",
+      "verdict": "pass",
+      "rationale": "All 4 steps had real verifications. Step 4 ran pytest end-to-end. Steps 1-3 had file-existence checks and were validated by the final test suite and README review.",
+      "evidence": "Step 4 verify: uv run pytest tests/ -v → 8 passed. docker-compose.yml exists. README updated with Docker Compose instructions."
+    },
+    {
+      "id": "F2",
+      "verdict": "pass",
+      "rationale": "The phase goal was to integrate frontend/backend with Docker Compose and document the setup. All deliverables exist: docker-compose.yml, .env, .env.example, frontend/.env.example, comprehensive README.md, and passing tests.",
+      "evidence": "docker-compose.yml, .env.example, frontend/.env.example exist. README contains setup, API endpoints, env vars. Tests pass."
+    },
+    {
+      "id": "F3",
+      "verdict": "pass",
+      "rationale": "Nothing was deferred in this phase. All planned integration and documentation work was completed.",
+      "evidence": "All 4 steps completed successfully. No items left undone."
+    }
+  ],
+  "projectChecks": {
+    "discovered": true,
+    "anyFailed": true,
+    "commands": [
+      {
+        "kind": "test",
+        "command": "pytest -q",
+        "exitCode": 1,
+        "durationMs": 1,
+        "timedOut": false
+      }
+    ]
+  }
+}

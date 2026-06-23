@@ -1,0 +1,20 @@
+import redis.asyncio as redis
+from backend.app.core.config import settings
+
+redis_client: redis.Redis | None = None
+
+
+async def get_redis_client() -> redis.Redis:
+    global redis_client
+    if redis_client is None:
+        redis_client = redis.Redis.from_url(
+            settings.REDIS_URL, decode_responses=True
+        )
+    return redis_client
+
+
+async def close_redis_client() -> None:
+    global redis_client
+    if redis_client is not None:
+        await redis_client.aclose()
+        redis_client = None
